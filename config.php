@@ -4,7 +4,7 @@
     $saml_lib_path = '/simplesamlphp/lib/_autoload.php'; 
     require_once($saml_lib_path);
 	// url de nuestro servidor, en este caso, carpeta demo.
-    $SP_URL = 'https://'.$_SERVER['SERVER_NAME']."/pramos12/privada/login.php";  
+    $SP_URL = 'https://'.$_SERVER['SERVER_NAME']."/pramos12/";  
     // Fuente de autenticacion definida en el authsources del SP ej, default-sp
     $SP_ORIGEN= 'desarrollo4sistemas';
     // Se crea la instancia del saml, pasando como parametro la fuente de autenticacion.

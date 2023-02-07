@@ -21,6 +21,9 @@
             echo "<br> Existe sesi&oacute;n a nombre de ".$atributos["uNombre"][0]."<br><a href='./privada/index.php'>Ir a secci&oacute;n privada</a>"; //Imprimir el atributo uNombre
         }
         else {
+            header("Location:".$SP_URL."privada/login.php"); 
+
+
             echo "<br>No hay sesi&oacute;n iniciada<br><a href='./privada/'>Iniciar sesi&oacute;n</a>";
         }
     ?>
