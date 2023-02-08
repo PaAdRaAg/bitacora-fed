@@ -61,8 +61,6 @@
   </div>
 
   <?php
-      require("./db_conn.php");
-      // Definir variable a buscar
       $atributos = $saml->getAttributes(); //Obtiene sus atributos
 
       $variable_a_buscar = $atributos["uCorreo"][0];
