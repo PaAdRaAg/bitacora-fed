@@ -28,13 +28,67 @@
     ?>
     <div class="agTarea">
       <h2>Crear tarea</h2>
-      <form action="index.php" method="post">
-        <input type="text" name="titulo" placeholder="Título">
-        <input type="text" name="descripcion" placeholder="Descripción">
-        <input type="text" name="fecha" placeholder="Fecha">
-        <input type="text" name="hora" placeholder="Hora">
-        <input type="submit" name="submit" value="Crear">
+      <form action="" method="post" class="form">
+
+        <div class="form">
+
+          <div class="form">
+            <label class="form-label">Escribe la tarea.</label>
+            <br>
+            <textarea class="" name="tarea" id="tarea" cols="30" rows="8"></textarea>
+          </div>
+
+          <div class="form-lin">
+            <div class="form">Actividad:
+              <select name="actividades" id="actividades"><option value="0">Privada</option></select>						
+            </div>
+
+            <div class="form">Fecha:
+              <input type="date" name="fechact" id="fechact">
+            </div>
+
+            <div class="form">
+            <input type="file" name="adjuntar" accept=".pdf,.jpg,.png" multiple class="btn-adj" >
+
+            </div>
+        </div>
+  
+        <div class="form">
+          <input type="submit" value="Guardar" class="btn-guard">
+        </div>
       </form>
+    </div>
   </div>
+
+  <?php
+      require("./db_conn.php");
+      // Definir variable a buscar
+      $atributos = $saml->getAttributes(); //Obtiene sus atributos
+
+      $variable_a_buscar = $atributos["uCorreo"][0];
+
+      // Preparar sentencia SQL para seleccionar registros
+      $sql = "SELECT * FROM usuarios WHERE email = '$variable_a_buscar'";
+
+      // Ejecutar sentencia y obtener resultados
+      $result = $conn->query($sql);
+
+      // Verificar si se encontró la variable
+      if ($result->num_rows > 0) {
+          // La variable se encontró, no hacer nada
+      } else {
+          // La variable no se encontró, ejecutar código
+          $nocuenta = $atributos["uCuenta"][0];
+          $nombre = $atributos["sn"][0];
+          $apellido = $atributos["givenName"][0];
+          $email = $atributos["uCorreo"][0];
+
+          $sql = "INSERT INTO usuarios (id, nocuenta, nombre, apellido, email)
+              VALUES (NULL, $nocuenta, '$nombre', '$apellido', '$email')";
+
+          $result = mysqli_query($conn, $sql);
+      }        
+    ?>
+
 </body>
 </html>

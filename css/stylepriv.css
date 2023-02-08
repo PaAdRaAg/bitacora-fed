@@ -32,6 +32,11 @@ a:hover{
 h1, h2{
     background-color: rgb(245, 245, 245);
     font-family: Arial, Helvetica, sans-serif;
+    margin-top: 15px;
+}
+
+h2{
+    text-align: left;
 }
 
 div.tareas{
@@ -41,6 +46,52 @@ div.tareas{
     border-radius: 10px;
 }
 
-div.agTarea{
+div.agTarea, select{
     background-color: rgb(245, 245, 245);
+}
+
+.form, label, input{
+    background-color: rgb(245, 245, 245);
+    text-align: left;
+    font-size: 18px;
+}
+
+input, select{
+    font-size: 15px;
+    border-radius: 5px;
+    border-width: 1px;
+}
+
+.form-lin{
+    background-color: rgb(245, 245, 245);
+    display: inline-flex;
+}
+
+textarea{
+    width: 98%;
+    background-color: rgb(255, 255, 255);
+    text-align: left;
+}
+
+.btn-guard{
+    background-color: #337ab7;
+    border-color: #2e6da4;    
+    border-radius: 5px;
+    border-width: 1.5px;
+    border-style: solid;
+    font-size: 20px;
+    color: white;
+    float: right;
+}
+
+.btn-guard:hover{
+    background-color: #3071a9;
+    border-color: #285e8e;
+}
+
+.btn-adj{
+    border-radius: 5px;
+    border-width: 1.5px;
+    border-style: solid;
+    font-size: 16px;
 }
