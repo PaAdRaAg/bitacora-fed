@@ -200,7 +200,7 @@ h6 { font-size: 0.875rem !important; }
   background-image: url('//www.ucol.mx/cms/beta/img/textura2.svg') !important;
 }
 .page-header {
-  /* background-image: url('//www.ucol.mx/cms/beta/img/textura3.svg') !important; */
+  background-image: url('//www.ucol.mx/cms/beta/img/textura3.svg') !important;
 }
 .slider .caption {
   background-image: url('//www.ucol.mx/cms/beta/img/textura4.svg'), url('//www.ucol.mx/cms/beta/img/textura5.svg') !important;
@@ -495,7 +495,7 @@ h6 { font-size: 0.875rem !important; }
     padding-bottom: 25px;
     display: inline-block;
     width: 100%;
-    float: left;
+    /* float: left; */
     color: #fff !important;
     background-color: #333 !important;
 }

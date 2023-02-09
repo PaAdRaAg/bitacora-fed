@@ -32,39 +32,118 @@
 		}
 	</style>
   </head>
+  <!-- <a class="navbar-brand" id="logo" href="//www.ucol.mx/">Universidad de Colima</a> -->
+
   <body>
 	<div id="estructura">
 	<!-- Fixed navbar -->
-	
+	<nav class="navbar navbar-light bg-faded theme-primary pos-f-t">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-xs-12">
+					<button class="navbar-toggler hidden-md-up pull-right collapsed" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false">&#x2630;</button>			        
+					<div class="collapse navbar-toggleable-sm" id="navbar-header">
+				        
+			            <a class="navbar-brand" id="logo" href="//www.ucol.mx/">Universidad de Colima</a>
+			            <span class="home-href"><a href="./"></a></span>
+			            						   <!--<ul id="navlist" class="nav navbar-primary navbar-nav pull-md-right">
+						   <li class="nav-item">
+						      <a class="nav-link" data-hover="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+						         Opcion 1
+						      </a>
+						           <ul id="subnavlist" class="dropdown-menu">
+						              <li><a href="#">Sub opcion 1</a></li>
+						              <li><a href="#">Sub opcion 2</a></li>
+						           </ul>
+						   </li>
+						   <li class="nav-item">
+						      <a class="nav-link" href="#">
+						         Opcion 2
+						      </a>
+						   </li>
+						   <li class="nav-item">
+						      <a class="nav-link" href="#">
+						         Opcion 3
+						      </a>
+						   </li>
+						</ul>-->
+			        </div>
+				</div>
+    </nav> <!-- /navbar -->
+        <section class="page-breadcrumb"> 
+     <div class="container "> 
+     	<div id="path">
+	        	<ol class="breadcrumb">
+	            	<li>Usted está en:</li>
+	            <li><a href="/">Inicio</a></li>
+			</ol>
+        </div>
+        <div id="sesion">
+	        	<ol class="breadcrumb">
+	            	<li>Bienvenido(a):</li>
+	            <li class="user-name">FERNANDEZ PALOMINOS PEDRO</li>
+	            <li><a href="#">Salir</a></li>
+			</ol>
+        </div>
+     </div> <!--cierra path-->
+    </section>
 	<section class="page-header">
-        <div class="container">
-            <a class="navbar-brand" id="logo" href="//www.ucol.mx/">Universidad de Colima</a>
+        <div class="container navbar">
+	        <h1 class="title-ucol">Sistema de bitácora</h1>
 	    </div><!--/ Cierra .container /-->
-        <nav class="navbar navbar-light bg-faded theme-primary pos-f-t">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-xs-12">
-                        <button class="navbar-toggler hidden-md-up pull-right collapsed" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false">&#x2630;</button>			        
-                        <div class="collapse navbar-toggleable-sm" id="navbar-header">
-                            <span class="home-href"><a href="./"></a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav> <!-- /navbar -->
     </section>
     <nav class="nav-sistema">
-    	<button class="navbar-toggler hidden-md-up pull-right collapsed" type="button" data-toggle="collapse" data-target="#navbar-header2" aria-controls="navbar-header2" aria-expanded="false">☰</button>
+    		<button class="navbar-toggler hidden-md-up pull-right collapsed" type="button" data-toggle="collapse" data-target="#navbar-header2" aria-controls="navbar-header2" aria-expanded="false">☰</button>
+		<div class="collapse navbar-toggleable-sm" id="navbar-header2">
+	        <ul id="navlist" class="nav navbar-primary navbar-nav pull-md-right">
+	            <li class="nav-item">
+	                <a class="a1 nav-link" data-hover="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+	                    <div class="oIcono opcion1"></div>
+	                    Opción 1
+	                </a>
+	                <!--[if gte IE 7]><!--><!--<![endif]--><!--[if lte IE 6]>
+	                <table>
+	                    <tr>
+	                        <td>
+	                            <![endif]-->
+	                            <ul id="subnavlist" class="dropdown-menu">
+	                                <li><a href="#">Sub-opción 1</a></li>
+				                    <li><a href="#">Sub-opción 2</a></li>
+				                    <li><a href="#">Sub-opción 3</a></li>
+				                    <li><a href="#">Sub-opción 4</a></li>
+	                            </ul>
+	                            <!--[if lte IE 6]>
+	                        </td>
+	                    </tr>
+	                </table>
+	                </a><![endif]-->
+	            </li>
+	            <li class="nav-item">
+	                <a class="a1 nav-link" data-hover="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+	                    <div class="oIcono opcion1"></div>
+	                    Opción 2
+	                </a>
+	                <ul id="subnavlist" class="dropdown-menu">
+	                    <li><a href="#">Sub-opción 1</a></li>
+		                <li><a href="#">Sub-opción 2</a></li>
+	                </ul>
+	                <!--[if gte IE 7]><!--><!--<![endif]-->
+	            </li>
+	            <li class="nav-item">
+	                <a class="a3 nav-link" href="plantillas.php">
+	                    <div class="oIcono opcion3"></div>
+	                    Opción 3
+	                </a>
+	                <!--[if gte IE 7]><!--><!--<![endif]-->
+	            </li>
+	        </ul>
+	    </div>
 	</nav>
     
     
-    <div class="container c-principal">
+	<div class="container c-principal">
         <div class="row p-contenido">
 			<div class="col-xl-2 col-lg-2 col-md-2 col-xs-12 sidebar">
 			</div>
-			<!-- <div class="col-xl-9 col-lg-8 col-md-8 col-xs-12 main"> <--Con  contenido izquierdo o derecho uno de los dos
-			<div class="col-xl-12 col-lg-12 col-md-12 col-xs-12 main"> <--Pagina completa --> 
-			<div class="col-xl-8 col-lg-6 col-md-6 col-xs-12 main"><!--Con contenido izquierdo y derecho -->
+			<div class="col-xl-8 col-lg-6 col-md-6 col-xs-12 main">
                 Este es un sistema que permite a los miembros de la Coordinación General de Tecnologías de la información de la Universidad de Colima, informar las actividades que han realizado durante el día.
 			</div>
 			<div class="col-xl-2 col-lg-2 col-md-2 col-xs-12 sidebar">
