@@ -33,7 +33,6 @@
                         <a href='./privada/'>Iniciar sesi&oacute;n</a>";
             }
         ?>
-
     </div>
 </body>
 </html>
