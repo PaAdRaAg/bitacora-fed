@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://www.ucol.mx/cms/apps/assets/css/apps.min.css" rel="stylesheet">
     <title>Bitácora</title>
 </head>
 <body>
-  <div class="tareas"> 
+  <div class="text-center"> 
     <h1>Bitácora</h1>
     <br>
     <?php
@@ -16,16 +17,19 @@
 
     if($saml->isAuthenticated())
         { $atributos= $saml->getAttributes();
-        echo "<div class='head'> 
-                <p>".$atributos["uNombre"][0]."</p>
-                <p>|</p>
-                <a href='../index.php'>Ir a secci&oacute;n p&uacute;blica</a>
-                <p>|</p>
-                <a href='logout.php'>Cerrar sesi&oacute;n</a>
+        echo "<div class='card top-0 start-50 translate-middle-x' style='width: 560px; height: 25px;'>
+                <ul class='list-inline'> 
+                  <li class='list-inline-item'>".$atributos["uNombre"][0]."</li>
+                  <li class='list-inline-item'>|</li>
+                  <a class='list-inline-item text-decoration-none' href='../index.php'>Ir a sección pública</a>
+                  <li class='list-inline-item'>|</li>
+                  <a class='list-inline-item text-decoration-none' href='logout.php'>Cerrar sesi&oacute;n</a>
+                </ul>
               </div>";
     }
     ?>
-    <div class="agTarea">
+    <br>
+    <div class="card top-0 start-50 translate-middle-x" style="width: 80%; height: 60%;">
       <h2>Crear tarea</h2>
       <form action="" method="post" class="form">
 
@@ -57,6 +61,7 @@
         </div>
       </form>
     </div>
+    <br>
   </div>
 
   <?php
@@ -86,6 +91,7 @@
           $result = mysqli_query($conn, $sql);
       }        
     ?>
-
+  <br>
+    <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
 </body>
 </html>
