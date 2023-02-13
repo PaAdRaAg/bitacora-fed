@@ -4,14 +4,14 @@
   require_once("../login.php");
 
 
-  $atributos = $saml->getAttributes();
-  $variable_a_buscar = $atributos["uCorreo"][0];
-  $sql = "SELECT id FROM usuarios WHERE email = '$variable_a_buscar'";
-  $res = mysqli_query($conn, $sql);
+  // $atributos = $saml->getAttributes();
+  // $variable_a_buscar = $atributos["uCorreo"][0];
+  // $sql = "SELECT id FROM usuarios WHERE email = '$variable_a_buscar'";
+  // $res = mysqli_query($conn, $sql);
 
 
-  // Recibir datos del formulario
-  $id_usr = $res;
+  // // Recibir datos del formulario
+  // $id_usr = $res;
   $texto = $_POST['texto'];
   $valor = $_POST['valor'];
   $fecha = $_POST['fecha'];
@@ -26,7 +26,7 @@
   // Insertar datos en la base de datos
 
   $sql = "INSERT INTO tarea (id, id_usr, tarea, act, fecha, archivos)
-          VALUES (NULL, '$id_usr', '$texto', '$valor', '$fecha', '$archivo')";
+          VALUES (NULL, '1', '$texto', '$valor', '$fecha', '$archivo')";
   if (mysqli_query($conn, $sql)) {
     echo "Datos agregados exitosamente.";
   } else {

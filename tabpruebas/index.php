@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="enviar.php" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data">
     <textarea name="texto"></textarea>
     <br><br>
     <select name="valor">
