@@ -1,3 +1,42 @@
+<?php
+include '../db_conn.php';
+// jale el correo de la sesión actual
+require_once('../config.php');
+
+// checar que id está relacionado con el correo
+// cuando tenga este dato que lo guarde en la variable de id_usr
+
+// create
+if (isset($_POST['submit'])) {
+
+  $atributos = $saml->getAttributes();
+  $variable_a_buscar = $atributos["uCorreo"][0];
+  $sql = "SELECT id FROM usuarios WHERE email = '$variable_a_buscar'";
+  $res = mysqli_query($conn, $sql);
+
+    $id_usr = $res;
+    $tarea = $_POST['tarea'];
+    $actividad = $_POST['act'];
+    $fecha = $_POST['fechact'];
+    $archivos = $_FILES['archivos']['name'];
+
+    $sql = "INSERT INTO tarea (id, id_usr, tarea, act, fecha, archivos)
+            VALUES (NULL, '$id_usr', '$tarea', '$actividad', '$fecha', '$archivos')";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        header("Location: index.php?msg=Registro creado exitosamente");
+    } else {
+        echo "Error al crear registro: " . mysqli_error($conn);
+    }
+
+
+}
+move_uploaded_file($_FILES['archivo']['tmp_name'], 'ruta/' . $archivo);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +52,6 @@
     <h1 class="text-success fw-bold">Bitácora</h1>
     <br>
     <?php
-    include '../db_conn.php';
     require_once("login.php");
 
     if($saml->isAuthenticated())
@@ -32,31 +70,31 @@
     <br>
     <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" style="width: 80%; height: 60%;">
       <h2 class="text-start">Crear tarea</h2>
-      <form action="" method="post" class="form">
+      <form action="" method="post" class="form" enctype="multipart/form-data">
 
         <div class="form text-start">
           <br>
           <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Tarea a registrar</label>
-            <textarea class="form-control border border-dark border-opacity-50" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label class="form-label">Tarea a registrar</label>
+            <textarea class="form-control border border-dark border-opacity-50" id="tarea" name="tarea" rows="3"></textarea>
           </div>
 
           <div class="container text-center">
             <div class="row">
               <div class="col-12 col-md-4">
-                <select class="form-select" aria-label="Default select example">
+                <select name="act" id="act" class="form-select" aria-label="Default select example">
                   <option selected>Actividad</option>
-                  <option value="1">Prrivada</option>
+                  <option value="1">Privada</option>
                   <option value="2">Grupal</option>
                 </select>
               </div>
               <div class="col-12 col-md-4 p-0 pt-2 border border-dark border-opacity-25 rounded">
-                <label for="fechact" class="form-label">Fecha: </label>
-                <input type="date" id="fechact" class="border border-dark border-opacity-25 rounded">
+                <label class="form-label">Fecha: </label>
+                <input type="date" id="fechact" name="fechact" class="border border-dark border-opacity-25 rounded">
               </div>
               <div class="col-12 col-md-4">
               <div class="">
-                <input class="form-control " type="file" id="formFileMultiple" multiple>
+                <input class="form-control " name="archivos" type="file" id="archivos" multiple>
               </div>
             </div>
           </div>
@@ -68,42 +106,48 @@
           <div class="col">
           </div>
           <div class="col d-grid gap-2">
-          <button class="btn btn-success" type="submit">Guardar</button>
+          <button class="btn btn-success" type="submit" name="submit">Guardar</button>
           </div>
         </div>
       </form>
     </div>
     <br>
   </div>
-
-  <?php
-      $atributos = $saml->getAttributes(); //Obtiene sus atributos
-
-      $variable_a_buscar = $atributos["uCorreo"][0];
-
-      // Preparar sentencia SQL para seleccionar registros
-      $sql = "SELECT * FROM usuarios WHERE email = '$variable_a_buscar'";
-
-      // Ejecutar sentencia y obtener resultados
-      $result = $conn->query($sql);
-
-      // Verificar si se encontró la variable
-      if ($result->num_rows > 0) {
-          // La variable se encontró, no hacer nada
-      } else {
-          // La variable no se encontró, ejecutar código
-          $nocuenta = $atributos["uCuenta"][0];
-          $nombre = $atributos["sn"][0];
-          $apellido = $atributos["givenName"][0];
-          $email = $atributos["uCorreo"][0];
-
-          $sql = "INSERT INTO usuarios (id, nocuenta, nombre, apellido, email)
-              VALUES (NULL, $nocuenta, '$nombre', '$apellido', '$email')";
-
-          $result = mysqli_query($conn, $sql);
-      }        
-    ?>
   <br>
-    <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
+
+  <table class="table table-hover text-center">
+
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">ID Tarea</th>
+        <th scope="col">ID Usuario</th>
+        <th scope="col">Tarea</th>
+        <th scope="col">Actividad</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Archivos</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <?php
+      $sql = "SELECT * FROM tarea";
+      $result = mysqli_query($conn, $sql);
+      while($row = mysqli_fetch_assoc($result)) {
+        ?>
+        <tr>
+          <td><?php echo $row['id'] ?></td>
+          <td><?php echo $row['id_usr'] ?></td>
+          <td><?php echo $row['tarea'] ?></td>
+          <td><?php echo $row['act'] ?></td>
+          <td><?php echo $row['fecha'] ?></td>
+          <td><?php echo $row['archivos'] ?></td> 
+        </tr>
+        <?php
+        }
+      ?>
+    </tbody>
+  </table>
+
+  <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
 </body>
 </html>

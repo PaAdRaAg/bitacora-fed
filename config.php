@@ -9,4 +9,5 @@
     $SP_ORIGEN= 'desarrollo4sistemas';
     // Se crea la instancia del saml, pasando como parametro la fuente de autenticacion.
 	$saml = new SimpleSAML_Auth_Simple($SP_ORIGEN);   
+    // echo "SAML creado";
 ?>
