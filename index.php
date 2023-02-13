@@ -8,8 +8,9 @@
     <title>Bitácora</title>
 </head>
 <body>
-    <div class="text-center">
-        <h1>Bitácora</h1>
+    <br>
+    <div class="text-center" style='height: 75%;'>
+    <h1 class="text-success fw-bold">Bitácora</h1>
         <br>
         <img style="width: 250px; opacity: 0.2;" src="https://www.olimpiadadeinformatica.org.mx/Resultados/img/escuelas/377.png" class="img-fluid" alt="Logo Univerdisdad de Colima">
         <br>

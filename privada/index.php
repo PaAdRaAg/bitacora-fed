@@ -8,8 +8,9 @@
     <title>Bitácora</title>
 </head>
 <body>
+  <br>
   <div class="text-center"> 
-    <h1>Bitácora</h1>
+    <h1 class="text-success fw-bold">Bitácora</h1>
     <br>
     <?php
     include '../db_conn.php';
@@ -17,7 +18,7 @@
 
     if($saml->isAuthenticated())
         { $atributos= $saml->getAttributes();
-        echo "<div class='card top-0 start-50 translate-middle-x' style='width: 560px; height: 25px;'>
+        echo "<div class='card top-0 start-50 translate-middle-x pt-3 border border-dark' style='width: 45%; height: auto;'>
                 <ul class='list-inline'> 
                   <li class='list-inline-item'>".$atributos["uNombre"][0]."</li>
                   <li class='list-inline-item'>|</li>
@@ -29,35 +30,46 @@
     }
     ?>
     <br>
-    <div class="card top-0 start-50 translate-middle-x" style="width: 80%; height: 60%;">
-      <h2>Crear tarea</h2>
+    <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" style="width: 80%; height: 60%;">
+      <h2 class="text-start">Crear tarea</h2>
       <form action="" method="post" class="form">
 
-        <div class="form">
-
-          <div class="form">
-            <label class="form-label">Escribe la tarea.</label>
-            <br>
-            <textarea class="" name="tarea" id="tarea" cols="30" rows="8"></textarea>
+        <div class="form text-start">
+          <br>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Tarea a registrar</label>
+            <textarea class="form-control border border-dark border-opacity-50" id="exampleFormControlTextarea1" rows="3"></textarea>
           </div>
 
-          <div class="form-lin">
-            <div class="form">Actividad:
-              <select name="actividades" id="actividades"><option value="0">Privada</option></select>						
+          <div class="container text-center">
+            <div class="row">
+              <div class="col-12 col-md-4">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Actividad</option>
+                  <option value="1">Prrivada</option>
+                  <option value="2">Grupal</option>
+                </select>
+              </div>
+              <div class="col-12 col-md-4 p-0 pt-2 border border-dark border-opacity-25 rounded">
+                <label for="fechact" class="form-label">Fecha: </label>
+                <input type="date" id="fechact" class="border border-dark border-opacity-25 rounded">
+              </div>
+              <div class="col-12 col-md-4">
+              <div class="">
+                <input class="form-control " type="file" id="formFileMultiple" multiple>
+              </div>
             </div>
-
-            <div class="form">Fecha:
-              <input type="date" name="fechact" id="fechact">
-            </div>
-
-            <div class="form">
-            <input type="file" name="adjuntar" accept=".pdf,.jpg,.png" multiple class="btn-adj" >
-
-            </div>
+          </div>
         </div>
-  
-        <div class="form">
-          <input type="submit" value="Guardar" class="btn-guard">
+        <br>
+        <div class="row align-items-end">
+          <div class="col">
+          </div>
+          <div class="col">
+          </div>
+          <div class="col d-grid gap-2">
+          <button class="btn btn-success" type="submit">Guardar</button>
+          </div>
         </div>
       </form>
     </div>
