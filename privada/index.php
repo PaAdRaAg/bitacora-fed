@@ -10,13 +10,18 @@ require_once('../config.php');
 if (isset($_POST['submit'])) {
 
   $atributos = $saml->getAttributes();
+
   $variable_a_buscar = $atributos["uCorreo"][0];
+
   $sql = "SELECT id FROM usuarios WHERE email = '$variable_a_buscar'";
+
   $res = mysqli_query($conn, $sql);
 
-  echo `res: $res`;
+  $row = mysqli_fetch_assoc($res);
 
-    $id_usr = $res;
+
+
+    $id_usr = $row['id'];
     $tarea = $_POST['tarea'];
     $actividad = $_POST['act'];
     $fecha = $_POST['fechact'];
@@ -24,7 +29,7 @@ if (isset($_POST['submit'])) {
 
     $sql = "INSERT INTO tarea (id, id_usr, tarea, act, fecha, archivos)
             VALUES (NULL, 
-            '$res', 
+            '$id_usr', 
             '$tarea', 
             '$actividad', 
             '$fecha', 
