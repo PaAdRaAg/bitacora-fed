@@ -14,6 +14,8 @@ if (isset($_POST['submit'])) {
   $sql = "SELECT id FROM usuarios WHERE email = '$variable_a_buscar'";
   $res = mysqli_query($conn, $sql);
 
+  echo `res: $res`;
+
     $id_usr = $res;
     $tarea = $_POST['tarea'];
     $actividad = $_POST['act'];
@@ -21,7 +23,12 @@ if (isset($_POST['submit'])) {
     $archivos = $_FILES['archivos']['name'];
 
     $sql = "INSERT INTO tarea (id, id_usr, tarea, act, fecha, archivos)
-            VALUES (NULL, '$id_usr', '$tarea', '$actividad', '$fecha', '$archivos')";
+            VALUES (NULL, 
+            '$res', 
+            '$tarea', 
+            '$actividad', 
+            '$fecha', 
+            '$archivos')";
 
     $result = mysqli_query($conn, $sql);
 
@@ -31,9 +38,7 @@ if (isset($_POST['submit'])) {
         echo "Error al crear registro: " . mysqli_error($conn);
     }
 
-
 }
-move_uploaded_file($_FILES['archivo']['tmp_name'], 'ruta/' . $archivo);
 
 ?>
 
@@ -84,8 +89,8 @@ move_uploaded_file($_FILES['archivo']['tmp_name'], 'ruta/' . $archivo);
               <div class="col-12 col-md-4">
                 <select name="act" id="act" class="form-select" aria-label="Default select example">
                   <option selected>Actividad</option>
-                  <option value="1">Privada</option>
-                  <option value="2">Grupal</option>
+                  <option value="Privada">Privada</option>
+                  <option value="Grupal">Grupal</option>
                 </select>
               </div>
               <div class="col-12 col-md-4 p-0 pt-2 border border-dark border-opacity-25 rounded">
