@@ -7,6 +7,8 @@ require_once('../config.php');
 // cuando tenga este dato que lo guarde en la variable de id_usr
 
 // create
+
+//CUANDO SE PRESIONA EL BOTO DE GUARDAR DETECTA EL ID DE LA SESIÓN INICIADA Y ENVÍA LA INFORMACIÓN Y DATOS DEL USUARIO A LA BASE DE DATOS 
 if (isset($_POST['submit'])) {
 
   $atributos = $saml->getAttributes();
@@ -124,6 +126,7 @@ if (isset($_POST['submit'])) {
     <br>
   </div>
   <br>
+    <!-- TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
 
   <table class="table table-hover text-center">
 
@@ -138,7 +141,7 @@ if (isset($_POST['submit'])) {
       </tr>
     </thead>
     <tbody>
-
+    <!-- CÓDIGO PARA LA TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
       <?php
       $sql = "SELECT * FROM tarea";
       $result = mysqli_query($conn, $sql);

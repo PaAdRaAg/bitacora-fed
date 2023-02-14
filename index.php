@@ -15,6 +15,8 @@
         <img style="width: 250px; opacity: 0.2;" src="https://www.olimpiadadeinformatica.org.mx/Resultados/img/escuelas/377.png" class="img-fluid" alt="Logo Univerdisdad de Colima">
         <br>
         <?php
+        //CARGAR MENSAJE DE VINEVENIDA Y OPCIÓN DE INISIO DE SESIÓN SI NO HAY UNA SESIÓN ACTIVA
+        //SI HAY SESIÓN ACTIVA APARECE EL NOMBRE DEL USUARIO DE LA SESIÓN Y UN BOTÓN PARA IR A LA SECCIÓN PRIVADA(BITÁCORA)
         include 'db_conn.php';
 
         require_once('config.php');
@@ -37,6 +39,40 @@
         ?>
     </div>
     <br>
+
+    <?php
+    //REGISTRO DE NUEVOS USUARIOS Y DETECCIÓN DE LOS YA REGISTRADOS
+            include 'db_conn.php';
+            if($saml->isAuthenticated()) {
+                // Definir variable a buscar
+                $atributos = $saml->getAttributes(); //Obtiene sus atributos
+
+                $variable_a_buscar = $atributos["uCorreo"][0];
+
+                // Preparar sentencia SQL para seleccionar registros
+                $sql = "SELECT * FROM crud WHERE email = '$variable_a_buscar'";
+
+                // Ejecutar sentencia y obtener resultados
+                $result = $conn->query($sql);
+
+                // Verificar si se encontró la variable
+                if ($result->num_rows > 0) {
+                    // La variable se encontró, no hacer nada
+                } else {
+                    // La variable no se encontró, ejecutar código
+                    $nocuenta = $atributos["uCuenta"][0];
+                    $nombre = $atributos["sn"][0];
+                    $apellido = $atributos["givenName"][0];
+                    $email = $atributos["uCorreo"][0];
+
+                    $sql = "INSERT INTO crud (id, nocuenta, nombre, apellido, email)
+                        VALUES (NULL, $nocuenta, '$nombre', '$apellido', '$email')";
+
+                    $result = mysqli_query($conn, $sql);
+                }
+            }
+        ?>
+
     <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
 </body>
 </html>
