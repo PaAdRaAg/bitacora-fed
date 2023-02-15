@@ -12,12 +12,15 @@
     <div class="text-center" style='height: 75%;'>
         <h1 class="text-success fw-bold">Bitácora</h1>
         <br>
+        <div>
         <img style="width: 250px; opacity: 0.2;"
             src="https://www.olimpiadadeinformatica.org.mx/Resultados/img/escuelas/377.png" class="img-fluid"
             alt="Logo Univerdisdad de Colima">
+        </div>
         <br>
+        <h2 class="text-success">Bienvenido</h2>
         <?php
-        //CARGAR MENSAJE DE VINEVENIDA Y OPCIÓN DE INISIO DE SESIÓN SI NO HAY UNA SESIÓN ACTIVA
+        //CARGAR MENSAJE DE BINEVENIDA Y OPCIÓN DE INISIO DE SESIÓN SI NO HAY UNA SESIÓN ACTIVA
         //SI HAY SESIÓN ACTIVA APARECE EL NOMBRE DEL USUARIO DE LA SESIÓN Y UN BOTÓN PARA IR A LA SECCIÓN PRIVADA(BITÁCORA)
         include 'db_conn.php';
         require_once('config.php');
