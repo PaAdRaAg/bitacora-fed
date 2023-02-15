@@ -51,13 +51,10 @@ if (isset($_POST['submit'])) {
       $atributos = $saml->getAttributes();
 
       $variable_a_buscar = $atributos["uCorreo"][0];
-
       // Preparar sentencia SQL para seleccionar registros
       $sql = "SELECT * FROM usuarios WHERE email = '$variable_a_buscar'";
-
       // Ejecutar sentencia y obtener resultados
       $result = $conn->query($sql);
-
       // Verificar si se encontró la variable
       if ($result->num_rows > 0) {
         // La variable se encontró, no hacer nada
@@ -94,22 +91,20 @@ if (isset($_POST['submit'])) {
           <div class="mb-3">
             <label class="form-label">Tarea a registrar</label>
             <textarea class="form-control border border-dark border-opacity-50" id="tarea" name="tarea"
-              rows="3"></textarea>
+              rows="3" required></textarea>
           </div>
 
           <div class="container text-center">
             <div class="row">
               <div class="col-12 col-md-4">
-                <select name="act" id="act" class="form-select" aria-label="Default select example">
-                  <option selected>Actividad</option>
-                  <option value="Privada">Privada</option>
-                  <option value="Grupal">Grupal</option>
+                <select name="act" id="act" class="form-select" aria-label="Default select example" required>
+                  <option selected value="Privada">Privada</option>
                 </select>
               </div>
 
               <div class="col-12 col-md-4 p-0 pt-2 border border-dark border-opacity-25 rounded">
                 <label class="form-label">Fecha: </label>
-                <input type="date" id="fechact" name="fechact" class="border border-dark border-opacity-25 rounded">
+                <input type="date" id="fechact" name="fechact" class="border border-dark border-opacity-25 rounded" value="{{ date('Y-m-d') }}" required>
               </div>
 
               <div class="col-12 col-md-4">
@@ -184,8 +179,12 @@ if (isset($_POST['submit'])) {
           ?>
         </tbody>
       </table>
-      <br>
     </div>
-    <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
+  </div>
+
+<br>
+
+  <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
+
 </body>
 </html>
