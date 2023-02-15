@@ -104,7 +104,7 @@ if (isset($_POST['submit'])) {
 
               <div class="col-12 col-md-4 p-0 pt-2 border border-dark border-opacity-25 rounded">
                 <label class="form-label">Fecha: </label>
-                <input type="date" id="fechact" name="fechact" class="border border-dark border-opacity-25 rounded" value="{{ date('Y-m-d') }}" required>
+                <input type="date" id="fechact" name="fechact" class="border border-dark border-opacity-25 rounded"  required>
               </div>
 
               <div class="col-12 col-md-4">
@@ -127,63 +127,86 @@ if (isset($_POST['submit'])) {
           </div>
       </form>
       <br>
-
-      <!-- TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
-      <table class="table table-hover text-center">
-        <thead class="table-dark">
-          <tr>
-            <th scope="col">ID Tarea</th>
-            <th scope="col">ID Usuario</th>
-            <th scope="col">Tarea</th>
-            <th scope="col">Actividad</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Archivos</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- CÓDIGO PARA LA TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
-          <?php
-          $variableBuscar = $atributos["uCorreo"][0];
-          // Preparar sentencia SQL para seleccionar registros
-          $sql = "SELECT * FROM usuarios WHERE email = '$variableBuscar'";
-          // Ejecutar sentencia y obtener resultados
-          $result = $conn->query($sql);
-          $ide = mysqli_fetch_assoc($result);
-
-          $sql = "SELECT * FROM tarea WHERE id_usr = '$ide[id]'";
-          $resul = mysqli_query($conn, $sql);
-          while ($row = mysqli_fetch_assoc($resul)) {
-            ?>
-            <tr>
-              <td>
-                <?php echo $row['id'] ?>
-              </td>
-              <td>
-                <?php echo $row['id_usr'] ?>
-              </td>
-              <td>
-                <?php echo $row['tarea'] ?>
-              </td>
-              <td>
-                <?php echo $row['act'] ?>
-              </td>
-              <td>
-                <?php echo $row['fecha'] ?>
-              </td>
-              <td>
-                <?php echo $row['archivos'] ?>
-              </td>
-            </tr>
-            <?php
-          }
-          ?>
-        </tbody>
-      </table>
     </div>
   </div>
+  <br>
+  <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" style="width: 80%; height: 60%;">
+    <h2 class="text-start">Actividades</h2>
+    <br>
+    <div class="row align-items-end">
+      <div class="col">
+      <select name="act" id="act" class="form-select" aria-label="Default select example" required>
+        <option selected value="Privada">Privada</option>
+      </select>
+      </div>
+      <div class="col">
+      </div>
+      <div class="col">
+      </div>
+      <div class="col">
+      </div>
+    </div>
 
-<br>
 
+    <br>
+    <!-- TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
+    <table class="table table-hover text-center">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">ID Tarea</th>
+          <th scope="col">ID Usuario</th>
+          <th scope="col">Tarea</th>
+          <th scope="col">Actividad</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Archivos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- CÓDIGO PARA LA TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
+        <?php
+        $variableBuscar = $atributos["uCorreo"][0];
+        // Preparar sentencia SQL para seleccionar registros
+        $sql = "SELECT * FROM usuarios WHERE email = '$variableBuscar'";
+        // Ejecutar sentencia y obtener resultados
+        $result = $conn->query($sql);
+        $ide = mysqli_fetch_assoc($result);
+
+        $sql = "SELECT * FROM tarea WHERE id_usr = '$ide[id]'";
+        $resul = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_assoc($resul)) {
+          ?>
+          <tr>
+            <td>
+              <?php echo $row['id'] ?>
+            </td>
+            <td>
+              <?php echo $row['id_usr'] ?>
+            </td>
+            <td>
+              <?php echo $row['tarea'] ?>
+            </td>
+            <td>
+              <?php echo $row['act'] ?>
+            </td>
+            <td>
+              <?php echo $row['fecha'] ?>
+            </td>
+            <td>
+              <?php echo $row['archivos'] ?>
+            </td>
+          </tr>
+          <?php
+        }
+        ?>
+      </tbody>
+    </table>
+  </div>
+
+  <br>
+  <script>
+    const today = new Date().toISOString().substr(0, 10);
+    document.getElementById("fechact").value = today;
+  </script>
   <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
 
 </body>
