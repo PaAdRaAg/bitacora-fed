@@ -82,7 +82,12 @@ if (isset($_POST['submit'])) {
     }
     ?>
     <br>
-    <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" style="width: 80%; height: 60%;">
+    
+    <ul class="nav nav-tabs" id="myTab">
+			<li class=""><a href="#bitacora">Bitácora</a></li>
+			<li class="active"><a href="#panel">Panel</a></li>
+		</ul>
+    <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" id="bitacora" style="width: 80%; height: 60%;">
       <h2 class="text-start">Crear tarea</h2>
       <form action="" method="post" class="form" enctype="multipart/form-data">
 
@@ -99,6 +104,7 @@ if (isset($_POST['submit'])) {
               <div class="col-12 col-md-4">
                 <select name="act" id="act" class="form-select" aria-label="Default select example" required>
                   <option selected value="Privada">Privada</option>
+                  <option value="General">General</option>
                 </select>
               </div>
 
@@ -133,20 +139,22 @@ if (isset($_POST['submit'])) {
   <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" style="width: 80%; height: 60%;">
     <h2 class="text-start">Actividades</h2>
     <br>
-    <div class="row align-items-end">
+    <div class="row align-items-start start-0">
       <div class="col">
-      <select name="act" id="act" class="form-select" aria-label="Default select example" required>
-        <option selected value="Privada">Privada</option>
-      </select>
+        <select name="act" id="act" class="form-select" aria-label="Default select example" required>
+          <option value="Privada">Privada</option>
+          <option value="General">General</option>
+        </select>
       </div>
       <div class="col">
+      <button class="btn btn-success " type="submit" name="submit">Filtrar</button>
+
       </div>
       <div class="col">
       </div>
       <div class="col">
       </div>
     </div>
-
 
     <br>
     <!-- TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
