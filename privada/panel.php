@@ -85,8 +85,8 @@ if (isset($_POST['submit'])) {
     ?>
     <br>
     <ul class="nav nav-tabs" id="myTab">
-      <li class="active"><a href="./index.php">Bitácora</a></li>
-      <li class=""><a href="./panel.php">Panel</a></li>
+      <li class=""><a href="./index.php">Bitácora</a></li>
+      <li class="active"><a href="./panel.php">Panel</a></li>
     </ul>
     <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" id="bitacora"
       style="width: 80%; height: 60%;">
@@ -165,12 +165,11 @@ if (isset($_POST['submit'])) {
     <table class="table table-hover text-center">
       <thead class="table-dark">
         <tr>
-          <th scope="col">ID Tarea</th>
-          <th scope="col">ID Usuario</th>
-          <th scope="col">Tarea</th>
           <th scope="col">Actividad</th>
-          <th scope="col">Fecha</th>
-          <th scope="col">Archivos</th>
+          <th scope="col">Agregar sub actividad</th>
+          <th scope="col">Ver</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
         </tr>
       </thead>
       <tbody>
@@ -178,7 +177,7 @@ if (isset($_POST['submit'])) {
         <?php
         $variableBuscar = $atributos["uCorreo"][0];
         // Preparar sentencia SQL para seleccionar registros
-        $sql = "SELECT * FROM usuarios WHERE email = '$variableBuscar'";
+        $sql = "SELECT * FROM actividades WHERE email = '$variableBuscar'";
         // Ejecutar sentencia y obtener resultados
         $result = $conn->query($sql);
         $ide = mysqli_fetch_assoc($result);
