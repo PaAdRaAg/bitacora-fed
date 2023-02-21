@@ -1,35 +1,3 @@
-<?php
-include '../db_conn.php';
-require_once('../config.php');
-// jale el correo de la sesión actual
-// checar que id está relacionado con el correo
-// cuando tenga este dato que lo guarde en la variable de id_usr
-//CUANDO SE PRESIONA EL BOTO DE GUARDAR DETECTA EL ID DE LA SESIÓN INICIADA Y ENVÍA LA INFORMACIÓN Y DATOS DEL USUARIO A LA BASE DE DATOS 
-if (isset($_POST['submit'])) {
-  $atributos = $saml->getAttributes();
-  $variable_a_buscar = $atributos["uCorreo"][0];
-  $sql = "SELECT id FROM usuarios WHERE email = '$variable_a_buscar'";
-  $res = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_assoc($res);
-
-  $id_usr = $row['id'];
-  $tarea = $_POST['tarea'];
-  $actividad = $_POST['act'];
-  $fecha = $_POST['fechact'];
-  $archivos = $_FILES['archivos']['name'];
-
-  $sql = "INSERT INTO tarea (id, id_usr, tarea, act, fecha, archivos)
-            VALUES (NULL, '$id_usr', '$tarea', '$actividad', '$fecha', '$archivos')";
-
-  $result = mysqli_query($conn, $sql);
-
-  if ($result) {
-    header("Location: index.php?msg=Registro creado exitosamente");
-  } else {
-    echo "Error al crear registro: " . mysqli_error($conn);
-  }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,48 +79,16 @@ if (isset($_POST['submit'])) {
         </tbody>
       </table>
       <br>
-      <form action="">
-
-        <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" id="bitacora"
-          style="width: 80%; height: 60%;">
-          <h2 class="text-start">Agregar actividad</h2>
-          <form action="" method="post" class="form" enctype="multipart/form-data">
-
-            <div class="form text-start">
-              <br>
-              <div class="mb-3">
-                <label class="form-label">Nombre: </label>
-                <textarea class="form-control border border-dark border-opacity-50" id="tarea" name="tarea" rows="3"
-                  required placeholder="Nombre"></textarea>
-              </div>
-
-              <br>
-              <div class="mb-3">
-                <label class="form-label">Descripción: </label>
-                <textarea class="form-control border border-dark border-opacity-50" id="tarea" name="tarea" rows="3"
-                  required placeholder="Descripción"></textarea>
-              </div>
-
-              <br>
-              <div class="mb-3">
-                <label class="form-label">Invitar: </label>
-                <textarea class="form-control border border-dark border-opacity-50" id="tarea" name="tarea" rows="3"
-                  required placeholder="Correo delimitados por comas"></textarea>
-              </div>
-
-            </div>
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <button class="btn btn-success"><a href="./agacts.php" class="text-decoration-none link-light">Agregar nueva
+              actividad</a></button>
         </div>
-        <br>
-        <div class="row">
-          <div class="col-12 col-md-4">
-            <button class="btn btn-success " type="submit" name="submit">Agregar nueva actividad</button>
-          </div>
-          <div class="col-12 col-md-4">
-          </div>
-          <div class="col-12 col-md-4">
-          </div>
+        <div class="col-12 col-md-4">
         </div>
-      </form>
+        <div class="col-12 col-md-4">
+        </div>
+      </div>
     </div>
     <br>
     <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
