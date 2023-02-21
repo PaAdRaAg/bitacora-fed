@@ -46,119 +46,15 @@ if (isset($_POST['submit'])) {
   <div class="text-center">
     <h1 class="text-success fw-bold">Bitácora</h1>
     <br>
-    <?php
-    require_once("login.php");
-
-    if ($saml->isAuthenticated()) {
-      $atributos = $saml->getAttributes();
-
-      $variable_a_buscar = $atributos["uCorreo"][0];
-      // Preparar sentencia SQL para seleccionar registros
-      $sql = "SELECT * FROM usuarios WHERE email = '$variable_a_buscar'";
-      // Ejecutar sentencia y obtener resultados
-      $result = $conn->query($sql);
-      // Verificar si se encontró la variable
-      if ($result->num_rows > 0) {
-        // La variable se encontró, no hacer nada
-      } else {
-        // La variable no se encontró, ejecutar código
-        $nocuenta = $atributos["uCuenta"][0];
-        $nombre = $atributos["sn"][0];
-        $apellido = $atributos["givenName"][0];
-        $email = $atributos["uCorreo"][0];
-
-        $sql = "INSERT INTO usuarios (id, nocuenta, nombre, apellido, email)
-          VALUES (NULL, $nocuenta, '$nombre', '$apellido', '$email')";
-
-        $result = mysqli_query($conn, $sql);
-      }
-      echo "<div class='card top-0 start-50 translate-middle-x pt-3 border border-dark' style='width: 45%; height: auto;'>
-        <ul class='list-inline'> 
-        <li class='list-inline-item'>" . $atributos["uNombre"][0] . "</li>
-        <li class='list-inline-item'>|</li>
-        <a class='list-inline-item text-decoration-none' href='../index.php'>Ir a sección pública</a>
-        <li class='list-inline-item'>|</li>
-        <a class='list-inline-item text-decoration-none' href='logout.php'>Cerrar sesi&oacute;n</a>
-        </ul>
-        </div>";
-    }
-    ?>
     <br>
     <ul class="nav nav-tabs" id="myTab">
       <li class=""><a href="./index.php">Bitácora</a></li>
       <li class="active"><a href="./panel.php">Panel</a></li>
     </ul>
-    <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" id="bitacora"
-      style="width: 80%; height: 60%;">
-      <h2 class="text-start">Crear tarea</h2>
-      <form action="" method="post" class="form" enctype="multipart/form-data">
-
-        <div class="form text-start">
-          <br>
-          <div class="mb-3">
-            <label class="form-label">Tarea a registrar</label>
-            <textarea class="form-control border border-dark border-opacity-50" id="tarea" name="tarea" rows="3"
-              required></textarea>
-          </div>
-
-          <div class="container text-center">
-            <div class="row">
-              <div class="col-12 col-md-4">
-                <select name="act" id="act" class="form-select" aria-label="Default select example" required>
-                  <option selected value="Privada">Privada</option>
-                  <option value="General">General</option>
-                </select>
-              </div>
-
-              <div class="col-12 col-md-4 p-0 pt-2 border border-dark border-opacity-25 rounded">
-                <label class="form-label">Fecha: </label>
-                <input type="date" id="fechact" name="fechact" class="border border-dark border-opacity-25 rounded"
-                  required>
-              </div>
-
-              <div class="col-12 col-md-4">
-                <div class="">
-                  <input class="form-control " name="archivos" type="file" id="archivos" multiple>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br>
-
-          <div class="row align-items-end">
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
-            <div class="col d-grid gap-2">
-              <button class="btn btn-success" type="submit" name="submit">Guardar</button>
-            </div>
-          </div>
-      </form>
-      <br>
-    </div>
-  </div>
-
   <br>
   <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" style="width: 80%; height: 60%;">
     <h2 class="text-start">Actividades</h2>
     <br>
-    <div class="row align-items-start start-0">
-      <div class="col">
-        <select name="act" id="act" class="form-select" aria-label="Default select example" required>
-          <option value="Privada">Privada</option>
-          <option value="General">General</option>
-        </select>
-      </div>
-      <div class="col">
-        <button class="btn btn-success " type="submit" name="submit">Filtrar</button>
-
-      </div>
-      <div class="col">
-      </div>
-      <div class="col">
-      </div>
-    </div>
 
     <br>
     <!-- TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
@@ -175,35 +71,35 @@ if (isset($_POST['submit'])) {
       <tbody>
         <!-- CÓDIGO PARA LA TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
         <?php
+        include '../db_conn.php';
+        require_once('../config.php');
+        
         $variableBuscar = $atributos["uCorreo"][0];
         // Preparar sentencia SQL para seleccionar registros
-        $sql = "SELECT * FROM actividades WHERE email = '$variableBuscar'";
+        $sql = "SELECT * FROM usuarios WHERE email = '$variableBuscar'";
         // Ejecutar sentencia y obtener resultados
         $result = $conn->query($sql);
         $ide = mysqli_fetch_assoc($result);
 
-        $sql = "SELECT * FROM tarea WHERE id_usr = '$ide[id]'";
+        $sql = "SELECT actividad FROM actividades WHERE id_usr = '$ide[id]'";
         $resul = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_assoc($resul)) {
           ?>
           <tr>
             <td>
-              <?php echo $row['id'] ?>
+              <?php echo $row['actividad'] ?>
             </td>
             <td>
-              <?php echo $row['id_usr'] ?>
+            <button class="btn btn-success " type="submit" name="submit">actividad</button>
             </td>
             <td>
-              <?php echo $row['tarea'] ?>
+            <button class="btn btn-success " type="submit" name="submit">actividad</button>
             </td>
             <td>
-              <?php echo $row['act'] ?>
+            <button class="btn btn-success " type="submit" name="submit">actividad</button>
             </td>
             <td>
-              <?php echo $row['fecha'] ?>
-            </td>
-            <td>
-              <?php echo $row['archivos'] ?>
+            <button class="btn btn-success " type="submit" name="submit">actividad</button>
             </td>
           </tr>
           <?php
@@ -211,15 +107,19 @@ if (isset($_POST['submit'])) {
         ?>
       </tbody>
     </table>
+    <br>
+    <div class="row">
+      <div class="col-12 col-md-4">
+        <button class="btn btn-success " type="submit" name="submit">Agregar nueva actividad</button>
+      </div>
+      <div class="col-12 col-md-4">
+      </div>
+      <div class="col-12 col-md-4">
+      </div>
+    </div>
   </div>
-
   <br>
-  <script>
-    const today = new Date().toISOString().substr(0, 10);
-    document.getElementById("fechact").value = today;
-  </script>
   <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
-
 </body>
 
 </html>
