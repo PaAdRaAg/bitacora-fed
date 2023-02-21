@@ -51,75 +51,111 @@ if (isset($_POST['submit'])) {
       <li class=""><a href="./index.php">Bitácora</a></li>
       <li class="active"><a href="./panel.php">Panel</a></li>
     </ul>
-  <br>
-  <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" style="width: 80%; height: 60%;">
-    <h2 class="text-start">Actividades</h2>
     <br>
+    <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" style="width: 80%; height: 60%;">
+      <h2 class="text-start">Actividades</h2>
+      <br>
 
-    <br>
-    <!-- TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
-    <table class="table table-hover text-center">
-      <thead class="table-dark">
-        <tr>
-          <th scope="col">Actividad</th>
-          <th scope="col">Agregar sub actividad</th>
-          <th scope="col">Ver</th>
-          <th scope="col">Editar</th>
-          <th scope="col">Eliminar</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- CÓDIGO PARA LA TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
-        <?php
-        include '../db_conn.php';
-        require_once('../config.php');
-        
-        $variableBuscar = $atributos["uCorreo"][0];
-        // Preparar sentencia SQL para seleccionar registros
-        $sql = "SELECT * FROM usuarios WHERE email = '$variableBuscar'";
-        // Ejecutar sentencia y obtener resultados
-        $result = $conn->query($sql);
-        $ide = mysqli_fetch_assoc($result);
-
-        $sql = "SELECT actividad FROM actividades WHERE id_usr = '$ide[id]'";
-        $resul = mysqli_query($conn, $sql);
-        while ($row = mysqli_fetch_assoc($resul)) {
-          ?>
+      <br>
+      <!-- TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
+      <table class="table table-hover text-center">
+        <thead class="table-dark">
           <tr>
-            <td>
-              <?php echo $row['actividad'] ?>
-            </td>
-            <td>
-            <button class="btn btn-success " type="submit" name="submit">actividad</button>
-            </td>
-            <td>
-            <button class="btn btn-success " type="submit" name="submit">actividad</button>
-            </td>
-            <td>
-            <button class="btn btn-success " type="submit" name="submit">actividad</button>
-            </td>
-            <td>
-            <button class="btn btn-success " type="submit" name="submit">actividad</button>
-            </td>
+            <th scope="col">Actividad</th>
+            <th scope="col">Agregar sub actividad</th>
+            <th scope="col">Ver</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
           </tr>
+        </thead>
+        <tbody>
+          <!-- CÓDIGO PARA LA TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
           <?php
-        }
-        ?>
-      </tbody>
-    </table>
-    <br>
-    <div class="row">
-      <div class="col-12 col-md-4">
-        <button class="btn btn-success " type="submit" name="submit">Agregar nueva actividad</button>
-      </div>
-      <div class="col-12 col-md-4">
-      </div>
-      <div class="col-12 col-md-4">
-      </div>
+          include '../db_conn.php';
+          require_once('../config.php');
+          require_once("login.php");
+
+          $atributos = $saml->getAttributes();
+
+          $variableBuscar = $atributos["uCorreo"][0];
+          // Preparar sentencia SQL para seleccionar registros
+          $sql = "SELECT * FROM usuarios WHERE email = '$variableBuscar'";
+          // Ejecutar sentencia y obtener resultados
+          $result = $conn->query($sql);
+          $ide = mysqli_fetch_assoc($result);
+
+          $sql = "SELECT actividad FROM actividades WHERE id_usr = '$ide[id]'";
+          $resul = mysqli_query($conn, $sql);
+          while ($row = mysqli_fetch_assoc($resul)) {
+            ?>
+            <tr>
+              <td>
+                <?php echo $row['actividad'] ?>
+              </td>
+              <td>
+                <button class="btn btn-success " type="submit" name="submit">Agregar</button>
+              </td>
+              <td>
+                <button class="btn btn-success " type="submit" name="submit">Ver</button>
+              </td>
+              <td>
+                <button class="btn btn-success " type="submit" name="submit">Editar</button>
+              </td>
+              <td>
+                <button class="btn btn-success " type="submit" name="submit">Eliminar</button>
+              </td>
+            </tr>
+            <?php
+          }
+          ?>
+        </tbody>
+      </table>
+      <br>
+      <form action="">
+
+        <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" id="bitacora"
+          style="width: 80%; height: 60%;">
+          <h2 class="text-start">Agregar actividad</h2>
+          <form action="" method="post" class="form" enctype="multipart/form-data">
+
+            <div class="form text-start">
+              <br>
+              <div class="mb-3">
+                <label class="form-label">Nombre: </label>
+                <textarea class="form-control border border-dark border-opacity-50" id="tarea" name="tarea" rows="3"
+                  required placeholder="Nombre"></textarea>
+              </div>
+
+              <br>
+              <div class="mb-3">
+                <label class="form-label">Descripción: </label>
+                <textarea class="form-control border border-dark border-opacity-50" id="tarea" name="tarea" rows="3"
+                  required placeholder="Descripción"></textarea>
+              </div>
+
+              <br>
+              <div class="mb-3">
+                <label class="form-label">Invitar: </label>
+                <textarea class="form-control border border-dark border-opacity-50" id="tarea" name="tarea" rows="3"
+                  required placeholder="Correo delimitados por comas"></textarea>
+              </div>
+
+            </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-12 col-md-4">
+            <button class="btn btn-success " type="submit" name="submit">Agregar nueva actividad</button>
+          </div>
+          <div class="col-12 col-md-4">
+          </div>
+          <div class="col-12 col-md-4">
+          </div>
+        </div>
+      </form>
     </div>
-  </div>
-  <br>
-  <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
+    <br>
+    <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
 </body>
 
 </html>
