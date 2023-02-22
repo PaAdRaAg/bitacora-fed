@@ -1,3 +1,34 @@
+<?php
+include '../db_conn.php';
+require_once('../config.php');
+// jale el correo de la sesión actual
+// checar que id está relacionado con el correo
+// cuando tenga este dato que lo guarde en la variable de id_usr
+//CUANDO SE PRESIONA EL BOTO DE GUARDAR DETECTA EL ID DE LA SESIÓN INICIADA Y ENVÍA LA INFORMACIÓN Y DATOS DEL USUARIO A LA BASE DE DATOS 
+if (isset($_POST['submit'])) {
+  $atributos = $saml->getAttributes();
+  $variable_a_buscar = $atributos["uCorreo"][0];
+  $sql = "SELECT id FROM usuarios WHERE email = '$variable_a_buscar'";
+  $res = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($res);
+
+  $id_usr = $row['id'];
+  $actividad = $_POST['actividad'];
+  $descripcion = $_POST['descripcion'];
+  $invitados = $_POST['invitados'];
+
+  $sql = "INSERT INTO actividades (id, id_usr, actividad, descripcion, invitados)
+            VALUES (NULL, '$id_usr', '$actividad', '$descripcion', '$invitados')";
+
+  $result = mysqli_query($conn, $sql);
+
+  if ($result) {
+    header("Location: panel.php?msg=Registro creado exitosamente");
+  } else {
+    echo "Error al crear registro: " . mysqli_error($conn);
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +77,7 @@
                         <div class="mb-3">
                             <label class="form-label">Invitar: </label>
                             <textarea class="form-control border border-dark border-opacity-50" id="tarea" name="tarea"
-                                rows="3" required placeholder="Correo delimitados por comas"></textarea>
+                                rows="3" placeholder="Correo delimitados por comas"></textarea>
                         </div>
 
                     </div>
@@ -55,14 +86,17 @@
             <div>
                 <div class="row">
                     <div class="col-12 col-md-6 col-6 mx-auto">
-                        <button class="btn btn-danger " type="submit" name="submit"><a href="./panel.php" class="link-light text-decoration-none">Cancelar</a></button>
-                        <button class="btn btn-success " type="submit" name="submit">Agregar</button>
+                        <button class="btn btn-danger"><a href="./panel.php" class="link-light text-decoration-none">Cancelar</a></button>
+                        <button class="btn btn-success" type="submit" name="submit">Agregar</button>
                     </div>
                     <div class="col-12 col-md-6">
                     </div>
                 </div>
             </div>
         </form>
+
+
+
         <br>
         <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
 </body>
