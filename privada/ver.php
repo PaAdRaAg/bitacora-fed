@@ -65,9 +65,15 @@
         </li>
       </ul>
     </div>
-
+    <br>
+    <ul class="nav nav-tabs" id="myTab">
+      <li class=""><a href="./index.php">Bitácora</a></li>
+      <li class="active"><a href="./panel.php">Panel</a></li>
+    </ul>
+    <br>
     <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" style="width: 80%; height: 60%;">
       <h2 class="text-start">Actividades</h2>
+      <br>
 
       <br>
       <!-- TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
@@ -115,11 +121,7 @@
                 <button class="btn btn-secondary " type="submit" name="submit">Editar</button>
               </td>
               <td>
-                <button class="btn btn-secondary " type="submit" name="submit">
-                  <a class="text-decoration-none link-light" href="eliminar.php?id=<?php echo $row['id'] ?>" class="link-dark">
-                            Eliminar 
-                        </a>  
-                </button>
+                <button class="btn btn-secondary " type="submit" name="submit">Eliminar</button>
               </td>
             </tr>
             <?php

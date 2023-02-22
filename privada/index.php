@@ -84,10 +84,16 @@ if (isset($_POST['submit'])) {
     }
     ?>
     <br>
-    <ul class="nav nav-tabs" id="myTab">
-      <li class="active"><a href="./index.php">Bitácora</a></li>
-      <li class=""><a href="./panel.php">Panel</a></li>
-    </ul>
+    <div class="nav justify-content-center">
+      <ul class="nav nav-tabs">
+        <li class="nav-item ">
+          <a class="nav-link active" aria-current="page" href="./index.php">Bitácora</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="./panel.php">Panel</a>
+        </li>
+      </ul>
+    </div>
     <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" id="bitacora"
       style="width: 80%; height: 60%;">
       <h2 class="text-start">Crear tarea</h2>
