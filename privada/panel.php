@@ -72,7 +72,7 @@
       <br>
       <!-- TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
       <table class="table table-hover text-center">
-        <thead class="table-dark">
+        <thead class="table-secondary">
           <tr>
             <th scope="col">Actividad</th>
             <th scope="col">Agregar sub actividad</th>

@@ -1,6 +1,6 @@
 <?php
 include '../db_conn.php';
-
+//hacer que busque el id de la tarea y la elimine
 $id = $_GET['id'];
 
 $sql = "DELETE FROM actividades WHERE id=$id";

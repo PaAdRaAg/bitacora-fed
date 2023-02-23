@@ -169,7 +169,7 @@ if (isset($_POST['submit'])) {
     <br>
     <!-- TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
     <table class="table table-hover text-center">
-      <thead class="table-dark">
+    <thead class="table-secondary">
         <tr>
           <th scope="col">ID Tarea</th>
           <th scope="col">ID Usuario</th>
