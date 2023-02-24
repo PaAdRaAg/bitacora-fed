@@ -100,11 +100,9 @@
 
           $sql = "SELECT id, actividad FROM actividades WHERE id_usr = '$ide[id]'";
           $resul = mysqli_query($conn, $sql);
-          // $row = mysqli_fetch_assoc($resul);
-
-          $sqls = "SELECT id_act_pert, actividad FROM subacts WHERE id_act_pert = '$row[id]'";
-          $resuls = mysqli_query($conn, $sqls);
           // $rows = mysqli_fetch_assoc($resuls);
+
+
           
           while($row = mysqli_fetch_assoc($resul)){
             ?>
@@ -141,7 +139,46 @@
                 </button>
               </td>
             </tr>
+
             <?php
+            $sqls = "SELECT id_act_pert, actividad FROM subacts WHERE id_act_pert = '$row[id]'";
+          $resuls = mysqli_query($conn, $sqls);
+          while($rows = mysqli_fetch_assoc($resuls)){
+          ?>
+
+            <tr>
+              <td>
+                <?php echo $rows['id'] ?>
+              </td>
+              <td>
+                <?php echo $rows['actividad'] ?>
+              </td>
+              <td>
+                  <?php echo " Esta es una subactividad" ?>
+              </td>
+              <td>
+                <button class="btn btn-secondary " type="submit" name="submit">
+                  <a href="ver_actividad.php?id=<?php echo $rows['id'] ?>" class="text-decoration-none link-light">Ver</a>
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-secondary" type="submit" name="submit">
+                  <a class="text-decoration-none link-light" href="editar.php?id=<?php echo $rows['id'] ?>">
+                    Editar
+                  </a>
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-secondary" type="submit" name="submit">
+                  <a class="text-decoration-none link-light" href="elim.php?id=<?php echo $rows['id'] ?>"
+                    onclick="return confirm('¿Estás seguro de que deseas eliminar esta actividad?');" class="link-dark">
+                    Eliminar
+                  </a>
+                </button>
+              </td>
+            </tr>
+            <?php
+          }
           }
           ?>
         </tbody>
