@@ -74,6 +74,7 @@
       <table class="table table-hover text-center">
         <thead class="table-secondary">
           <tr>
+            <th scope="col">ID</th>
             <th scope="col">Actividad</th>
             <th scope="col">Agregar sub actividad</th>
             <th scope="col">Ver</th>
@@ -97,11 +98,14 @@
           $result = $conn->query($sql);
           $ide = mysqli_fetch_assoc($result);
 
-          $sql = "SELECT actividad FROM actividades WHERE id_usr = '$ide[id]'";
+          $sql = "SELECT id, actividad FROM actividades WHERE id_usr = '$ide[id]'";
           $resul = mysqli_query($conn, $sql);
           while ($row = mysqli_fetch_assoc($resul)) {
             ?>
             <tr>
+              <td>
+                <?php echo $row['id'] ?>
+              </td>
               <td>
                 <?php echo $row['actividad'] ?>
               </td>
@@ -109,16 +113,23 @@
                 <button class="btn btn-secondary " type="submit" name="submit">Agregar</button>
               </td>
               <td>
-                <button class="btn btn-secondary " type="submit" name="submit">Ver</button>
-              </td>
-              <td>
-                <button class="btn btn-secondary " type="submit" name="submit">Editar</button>
-              </td>
-              <td>
                 <button class="btn btn-secondary " type="submit" name="submit">
-                  <a class="text-decoration-none link-light" href="eliminar.php?id=<?php echo $row['id'] ?>" class="link-dark">
-                            Eliminar 
-                        </a>  
+                <a href="ver_actividad.php?id=<?php echo $row['id'] ?>" class="text-decoration-none link-light">Ver</a>
+                </button>
+              </td>
+              <td>
+              <button class="btn btn-secondary" type="submit" name="submit">
+    <a class="text-decoration-none link-light" href="editar.php?id=<?php echo $row['id'] ?>">
+      Editar
+    </a>  
+  </button>
+              </td>
+              <td>
+                <button class="btn btn-secondary" type="submit" name="submit">
+                  <a class="text-decoration-none link-light" href="elim.php?id=<?php echo $row['id'] ?>"
+                    onclick="return confirm('¿Estás seguro de que deseas eliminar esta actividad?');" class="link-dark">
+                    Eliminar
+                  </a>
                 </button>
               </td>
             </tr>

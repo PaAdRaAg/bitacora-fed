@@ -134,12 +134,11 @@ if (isset($_POST['agact'])) {
             <br>
             <div>
                 <div class="row">
-                    <div class="col-12 col-md-6 col-6 mx-auto">
-                        <button class="btn btn-danger"><a href="./panel.php" class="link-light text-decoration-none">Cancelar</a></button>
+                    <div class="col-12 col-md-6">
+                      <button class="btn btn-danger"><a href="./panel.php" class="link-light text-decoration-none">Cancelar</a></button>
                     </div>
                     <div class="col-12 col-md-6">
                     <button class="btn btn-success" type="submit" name="agact">Agregar</button>
-
                     </div>
                 </div>
             </div>
