@@ -114,15 +114,15 @@
               </td>
               <td>
                 <button class="btn btn-secondary " type="submit" name="submit">
-                <a href="ver_actividad.php?id=<?php echo $row['id'] ?>" class="text-decoration-none link-light">Ver</a>
+                  <a href="ver_actividad.php?id=<?php echo $row['id'] ?>" class="text-decoration-none link-light">Ver</a>
                 </button>
               </td>
               <td>
-              <button class="btn btn-secondary" type="submit" name="submit">
-    <a class="text-decoration-none link-light" href="editar.php?id=<?php echo $row['id'] ?>">
-      Editar
-    </a>  
-  </button>
+                <button class="btn btn-secondary" type="submit" name="submit">
+                  <a class="text-decoration-none link-light" href="editar.php?id=<?php echo $row['id'] ?>">
+                    Editar
+                  </a>
+                </button>
               </td>
               <td>
                 <button class="btn btn-secondary" type="submit" name="submit">

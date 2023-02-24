@@ -37,19 +37,19 @@ if (isset($_POST['agact'])) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://www.ucol.mx/cms/apps/assets/css/apps.min.css" rel="stylesheet">
-    <title>Bitácora</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://www.ucol.mx/cms/apps/assets/css/apps.min.css" rel="stylesheet">
+  <title>Bitácora</title>
 </head>
 
 <body>
+  <br>
+  <div class="text-center">
+    <h1 class="text-success fw-bold">Bitácora</h1>
     <br>
-    <div class="text-center">
-        <h1 class="text-success fw-bold">Bitácora</h1>
-        <br>
-        <?php
+    <?php
     require_once("login.php");
     include '../db_conn.php';
     require_once('../config.php');
@@ -100,52 +100,53 @@ if (isset($_POST['agact'])) {
         </li>
       </ul>
     </div>
+    <form action="" method="post" class="form" enctype="multipart/form-data">
+
+      <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" id="bitacora"
+        style="width: 80%; height: 60%;">
+        <h2 class="text-start">Agregar actividad</h2>
         <form action="" method="post" class="form" enctype="multipart/form-data">
 
-            <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" id="bitacora"
-                style="width: 80%; height: 60%;">
-                <h2 class="text-start">Agregar actividad</h2>
-                <form action="" method="post" class="form" enctype="multipart/form-data">
-
-                    <div class="form text-start">
-                        <br>
-                        <div class="mb-3">
-                            <label class="form-label">Nombre: </label>
-                            <textarea class="form-control border border-dark border-opacity-50" id="actividad" name="actividad"
-                                rows="3" required placeholder="Nombre"></textarea>
-                        </div>
-
-                        <br>
-                        <div class="mb-3">
-                            <label class="form-label">Descripción: </label>
-                            <textarea class="form-control border border-dark border-opacity-50" id="descipcion" name="descipcion"
-                                rows="3" required placeholder="Descripción"></textarea>
-                        </div>
-
-                        <br>
-                        <div class="mb-3">
-                            <label class="form-label">Invitar: </label>
-                            <textarea class="form-control border border-dark border-opacity-50" id="invitados" name="invitados"
-                                rows="3" placeholder="Correo delimitados por comas"></textarea>
-                        </div>
-
-                    </div>
-            </div>
+          <div class="form text-start">
             <br>
-            <div>
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                      <button class="btn btn-danger"><a href="./panel.php" class="link-light text-decoration-none">Cancelar</a></button>
-                    </div>
-                    <div class="col-12 col-md-6">
-                    <button class="btn btn-success" type="submit" name="agact">Agregar</button>
-                    </div>
-                </div>
+            <div class="mb-3">
+              <label class="form-label">Nombre: </label>
+              <textarea class="form-control border border-dark border-opacity-50" id="actividad" name="actividad"
+                rows="3" required placeholder="Nombre"></textarea>
             </div>
-        </form>
 
-        <br>
-        <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
+            <br>
+            <div class="mb-3">
+              <label class="form-label">Descripción: </label>
+              <textarea class="form-control border border-dark border-opacity-50" id="descipcion" name="descipcion"
+                rows="3" required placeholder="Descripción"></textarea>
+            </div>
+
+            <br>
+            <div class="mb-3">
+              <label class="form-label">Invitar: </label>
+              <textarea class="form-control border border-dark border-opacity-50" id="invitados" name="invitados"
+                rows="3" placeholder="Correo delimitados por comas"></textarea>
+            </div>
+
+          </div>
+      </div>
+      <br>
+      <div>
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <button class="btn btn-danger"><a href="./panel.php"
+                class="link-light text-decoration-none">Cancelar</a></button>
+          </div>
+          <div class="col-12 col-md-6">
+            <button class="btn btn-success" type="submit" name="agact">Agregar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <br>
+    <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
 </body>
 
 </html>

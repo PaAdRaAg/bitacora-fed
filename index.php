@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,15 +8,16 @@
     <link href="https://www.ucol.mx/cms/apps/assets/css/apps.min.css" rel="stylesheet">
     <title>Bitácora</title>
 </head>
+
 <body>
     <br>
     <div class="text-center" style='height: 75%;'>
         <h1 class="text-success fw-bold">Bitácora</h1>
         <br>
         <div>
-        <img style="width: 250px; opacity: 0.2;"
-            src="https://www.olimpiadadeinformatica.org.mx/Resultados/img/escuelas/377.png" class="img-fluid"
-            alt="Logo Univerdisdad de Colima">
+            <img style="width: 250px; opacity: 0.2;"
+                src="https://www.olimpiadadeinformatica.org.mx/Resultados/img/escuelas/377.png" class="img-fluid"
+                alt="Logo Univerdisdad de Colima">
         </div>
         <br>
         <h2 class="text-success">Bienvenido</h2>
@@ -46,4 +48,5 @@
 
     <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
 </body>
+
 </html>
