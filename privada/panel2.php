@@ -45,7 +45,10 @@
                       Eliminar
                     </a>
                   </button>
-                </td>    <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
+                </td>    
+              </tr>
+              
+                <script src="https://www.ucol.mx/cms/apps/assets/js/apps.min.js"></script>
 </body>
 
 </html>
