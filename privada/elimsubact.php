@@ -5,12 +5,10 @@ if (isset($_GET['id'])) {
   $id = $_GET['id'];
 
   // Preparar sentencia SQL para eliminar la actividad
-  $sql = "DELETE FROM actividades WHERE id = '$id'";
-
-  $sql2 = "DELETE FROM subacts WHERE id_act_pert = '$id'";
+  $sql = "DELETE FROM subacts WHERE id = '$id'";
 
   // Ejecutar sentencia
-  if ($conn->query($sql) === TRUE && $conn->query($sql2) === TRUE) {
+  if ($conn->query($sql) === TRUE) {
     echo "Actividad eliminada exitosamente";
   } else {
     echo "Error al eliminar la actividad: " . mysqli_error($conn);
