@@ -113,6 +113,22 @@ if (isset($_POST['submit'])) {
                 <select name="act" id="act" class="form-select" aria-label="Default select example" required>
                   <option selected value="Privada">Privada</option>
                   <option value="General">General</option>
+                  <?php
+                  $variableBuscar = $atributos["uCorreo"][0];
+                  // Preparar sentencia SQL para seleccionar registros
+                  $sql = "SELECT * FROM usuarios WHERE email = '$variableBuscar'";
+                  // Ejecutar sentencia y obtener resultados
+                  $result = $conn->query($sql);
+                  $ide = mysqli_fetch_assoc($result);
+
+                  $sql = "SELECT * FROM actividades WHERE id_usr = '$ide[id]'";
+                  $resul = mysqli_query($conn, $sql);
+                  while ($row = mysqli_fetch_assoc($resul)) {
+                    ?>
+                    <option value="<?php echo $row['actividad'] ?>"><?php echo $row['actividad'] ?></option>
+                    <?php
+                  }
+                  ?>
                 </select>
               </div>
 
