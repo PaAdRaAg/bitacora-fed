@@ -247,7 +247,7 @@ if (isset($_POST['submit'])) {
                 <?php echo $row['archivos'] ?>
               </td>
             </tr>
-          <?php
+            <?php
           }
         } else {
 
@@ -281,8 +281,59 @@ if (isset($_POST['submit'])) {
               <td>
                 <?php echo $row['archivos'] ?>
               </td>
-            </tr>
-            <?php
+              <?php
+              $variableBuscar = $atributos["uCorreo"][0];
+              $sql2 = "SELECT * FROM actividades WHERE FIND_IN_SET('$variableBuscar', invitados)";
+              $resul2 = mysqli_query($conn, $sql2);
+              while ($row2 = mysqli_fetch_assoc($resul2)) {
+                ?>
+                <td>
+                  <?php echo $row2['id'] ?>
+                </td>
+                <td>
+                  <?php echo $row2['id_usr'] ?>
+                </td>
+                <td>
+                  <?php echo $row2['actividad'] ?>
+                </td>
+                <td>
+                  <?php echo $row2['descipcion'] ?>
+                </td>
+                <td>
+                  <?php echo $row2['invitados'] ?>
+                </td>
+                <?php
+              }
+
+              $sql3 = "SELECT * FROM subacts WHERE FIND_IN_SET('$variableBuscar', invitados)";
+              $resul3 = mysqli_query($conn, $sql3);
+              while ($row3 = mysqli_fetch_assoc($resul3)) {
+
+                ?>
+                <td>
+                  <?php echo $row3['id'] ?>
+                </td>
+                <td>
+                  <?php echo $row3['id_us'] ?>
+                </td>
+                <td>
+                  <?php echo $row3['tarea'] ?>
+                </td>
+                <td>
+                  <?php echo $row3['act'] ?>
+                </td>
+                <td>
+                  <?php echo $row3['fecha'] ?>
+                </td>
+                <td>
+                  <?php echo $row3['archivos'] ?>
+                </td>
+                <?php
+
+                ?>
+              </tr>
+              <?php
+              }
           }
         }
         ?>
