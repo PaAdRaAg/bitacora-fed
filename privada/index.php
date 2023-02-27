@@ -163,24 +163,41 @@ if (isset($_POST['submit'])) {
 
   <br>
   <div class="card top-0 start-50 translate-middle-x p-3 border border-dark" style="width: 80%; height: 60%;">
-    <h2 class="text-start">Actividades</h2>
+    <h2 class="text-start">Tareas</h2>
     <br>
-    <div class="row align-items-start start-0">
-      <div class="col">
-        <select name="act" id="act" class="form-select" aria-label="Default select example" required>
-          <option value="Privada">Privada</option>
-          <option value="General">General</option>
-        </select>
-      </div>
-      <div class="col">
-        <button class="btn btn-success " type="submit" name="submit">Filtrar</button>
+    <form action="" method="post">
+      <div class="row align-items-start start-0">
+        <div class="col">
+          <select name="filtro" id="filtro" class="form-select" aria-label="Default select example" required>
+            <option value="Privada">Privada</option>
+            <option value="General">General</option>
+            <?php
+            $variableBuscar = $atributos["uCorreo"][0];
+            // Preparar sentencia SQL para seleccionar registros
+            $sql = "SELECT * FROM usuarios WHERE email = '$variableBuscar'";
+            // Ejecutar sentencia y obtener resultados
+            $result = $conn->query($sql);
+            $ide = mysqli_fetch_assoc($result);
 
+            $sql = "SELECT * FROM actividades WHERE id_usr = '$ide[id]'";
+            $resul = mysqli_query($conn, $sql);
+            while ($row = mysqli_fetch_assoc($resul)) {
+              ?>
+              <option value="<?php echo $row['actividad'] ?>"><?php echo $row['actividad'] ?></option>
+              <?php
+            }
+            ?>
+          </select>
+        </div>
+        <div class="col">
+          <button class="btn btn-success " type="submit" name="filtrar">Filtrar</button>
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+        </div>
       </div>
-      <div class="col">
-      </div>
-      <div class="col">
-      </div>
-    </div>
+    </form>
 
     <br>
     <!-- TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
@@ -198,38 +215,75 @@ if (isset($_POST['submit'])) {
       <tbody>
         <!-- CÓDIGO PARA LA TABLA QUE MUESETRA LAS TAREAS DEL USUARIO -->
         <?php
-        $variableBuscar = $atributos["uCorreo"][0];
-        // Preparar sentencia SQL para seleccionar registros
-        $sql = "SELECT * FROM usuarios WHERE email = '$variableBuscar'";
-        // Ejecutar sentencia y obtener resultados
-        $result = $conn->query($sql);
-        $ide = mysqli_fetch_assoc($result);
+        if (isset($_POST['filtrar'])) {
+          // Obtener el valor seleccionado de la lista desplegable
+          $filtro = $_POST['filtro'];
 
-        $sql = "SELECT * FROM tarea WHERE id_usr = '$ide[id]'";
-        $resul = mysqli_query($conn, $sql);
-        while ($row = mysqli_fetch_assoc($resul)) {
-          ?>
-          <tr>
-            <td>
-              <?php echo $row['id'] ?>
-            </td>
-            <td>
-              <?php echo $row['id_usr'] ?>
-            </td>
-            <td>
-              <?php echo $row['tarea'] ?>
-            </td>
-            <td>
-              <?php echo $row['act'] ?>
-            </td>
-            <td>
-              <?php echo $row['fecha'] ?>
-            </td>
-            <td>
-              <?php echo $row['archivos'] ?>
-            </td>
-          </tr>
+          // Construir la consulta SQL con el filtro seleccionado
+          $query = "SELECT * FROM tarea WHERE act = '$filtro'";
+
+          // Ejecutar la consulta y obtener los resultados
+          $result = mysqli_query($conn, $query);
+
+          while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+            <tr>
+              <td>
+                <?php echo $row['id'] ?>
+              </td>
+              <td>
+                <?php echo $row['id_usr'] ?>
+              </td>
+              <td>
+                <?php echo $row['tarea'] ?>
+              </td>
+              <td>
+                <?php echo $row['act'] ?>
+              </td>
+              <td>
+                <?php echo $row['fecha'] ?>
+              </td>
+              <td>
+                <?php echo $row['archivos'] ?>
+              </td>
+            </tr>
           <?php
+          }
+        } else {
+
+          $variableBuscar = $atributos["uCorreo"][0];
+          // Preparar sentencia SQL para seleccionar registros
+          $sql = "SELECT * FROM usuarios WHERE email = '$variableBuscar'";
+          // Ejecutar sentencia y obtener resultados
+          $result = $conn->query($sql);
+          $ide = mysqli_fetch_assoc($result);
+
+          $sql = "SELECT * FROM tarea WHERE id_usr = '$ide[id]'";
+          $resul = mysqli_query($conn, $sql);
+          while ($row = mysqli_fetch_assoc($resul)) {
+            ?>
+            <tr>
+              <td>
+                <?php echo $row['id'] ?>
+              </td>
+              <td>
+                <?php echo $row['id_usr'] ?>
+              </td>
+              <td>
+                <?php echo $row['tarea'] ?>
+              </td>
+              <td>
+                <?php echo $row['act'] ?>
+              </td>
+              <td>
+                <?php echo $row['fecha'] ?>
+              </td>
+              <td>
+                <?php echo $row['archivos'] ?>
+              </td>
+            </tr>
+            <?php
+          }
         }
         ?>
       </tbody>
